@@ -1,0 +1,37 @@
+.custom-navbar {
+  background: linear-gradient(to right, #000000 0%, #150036 40%, #1c004a 100%);
+  width: 100%;
+  min-height: 90px;
+  padding: 0 3rem;
+}
+
+.custom-navbar .container-fluid {
+  padding: 0;
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 1.8rem;
+  margin-right: 0;
+}
+
+.custom-navbar .nav-links {
+  gap: 2rem;
+}
+
+.custom-navbar .nav-link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 0;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #c9a6ff;
+}
+
+.custom-navbar .navbar-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
