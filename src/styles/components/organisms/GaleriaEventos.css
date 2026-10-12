@@ -1,0 +1,66 @@
+.galeria-eventos {
+  background: #16161a;
+  padding: 2rem 3rem 4rem;
+}
+
+.galeria-eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.evento-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: #202024;
+  border-radius: 24px;
+  padding: 1.5rem;
+  color: #c9c9d1;
+  text-align: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.evento-tarjeta:hover {
+  background: linear-gradient(to bottom, #2a1a3a, #1a0050);
+  color: #fff;
+}
+
+/* Los afiches son verticales (4:5), asi todos quedan del mismo tamaño */
+.evento-imagen {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+}
+
+.evento-dato {
+  margin: 0;
+}
+
+/* Doble clase para ganarle a los estilos de .btn-primary de Bootstrap */
+.evento-tarjeta .evento-boton {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #300020;
+  --bs-btn-border-color: #300020;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5c003d;
+  --bs-btn-hover-border-color: #5c003d;
+  --bs-btn-active-bg: #5c003d;
+  --bs-btn-active-border-color: #5c003d;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .galeria-eventos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .galeria-eventos { padding: 1rem 1.5rem 3rem; }
+  .galeria-eventos-grid { grid-template-columns: 1fr; }
+}

@@ -1,9 +1,9 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { FaHouse, FaPhone, FaEnvelope } from 'react-icons/fa6';
 import NavBar from './components/organisms/Navbar';
 import { Footer } from './components/organisms/Footer';
 import Home from './pages/Home';
+import Eventos from './pages/Eventos';
 import logo from './assets/images/logo.webp';
 import instagram from './assets/images/instagram.webp';
 import youtube from './assets/images/youtube.webp';
@@ -14,11 +14,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/eventos" element={<Eventos />} />
       </Routes>
       <Footer
         logo={logo}
         enlaces={[
-          { label: 'Como trabajamos', href: '#como-trabajamos' },
+          { label: 'Como trabajamos', href: '/eventos#trabajamos' },
           { label: 'Preguntas Frecuentes', href: '#faq' },
         ]}
         contactos={[

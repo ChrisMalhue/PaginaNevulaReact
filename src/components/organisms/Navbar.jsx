@@ -17,8 +17,8 @@ function NavBar() {
             <Nav.Link href="/#">Home</Nav.Link>
             <Nav.Link href="/#quienes">Quienes somos</Nav.Link>
             <Nav.Link href="/#elegirnos">Por que elegirnos</Nav.Link>
-            <Nav.Link href="/">Como trabajamos</Nav.Link>
-            <Nav.Link href="/">Galeria de eventos</Nav.Link>
+            <Nav.Link href="/eventos#trabajamos">Como trabajamos</Nav.Link>
+            <Nav.Link href="/eventos#fotos">Galeria de eventos</Nav.Link>
             <Nav.Link href="/">FAQ</Nav.Link>
             <Nav.Link href="/">Cotizacion</Nav.Link>
           </Nav>
