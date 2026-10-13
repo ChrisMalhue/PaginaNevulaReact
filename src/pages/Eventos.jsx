@@ -7,7 +7,7 @@ function Eventos() {
   return (
     <>
       <SeccionComoTrabajamos {...comoTrabajamos} />
-      <GaleriaEventos eventos={eventos} />
+      <GaleriaEventos titulo="Galería de eventos" eventos={eventos} />
     </>
   );
 }

@@ -1,4 +1,5 @@
 export const comoTrabajamos = {
+  titulo:'¿Cómo es nuestro método de trabajo?',
   parrafo:
     'En Nevula no improvisamos el viaje: cada evento parte con una órbita clara. Escuchamos tu idea, entendemos la energía que buscas y armamos el set pensando en tu público, no en una fórmula genérica. Llegamos con anticipación, probamos cada equipo y nos aseguramos de que todo esté listo para el despegue. Desde la primera conversación hasta el último track, trabajamos codo a codo contigo para que tu fiesta llegue nítida, potente y sin turbulencias.',
   introPasos: 'Nuestro proceso es simple y directo:',

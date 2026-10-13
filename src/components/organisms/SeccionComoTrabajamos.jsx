@@ -4,10 +4,11 @@ import { List } from '../atoms/List';
 import { ListItem } from '../atoms/ListItem';
 import '../../styles/components/organisms/SeccionComoTrabajamos.css';
 
-export function SeccionComoTrabajamos({ parrafo, introPasos, pasos = [] }) {
+export function SeccionComoTrabajamos({ titulo, parrafo, introPasos, pasos = [] }) {
   return (
     <Caluga Component="section" id="trabajamos" className="como-trabajamos">
       <Caluga className="como-trabajamos-caja">
+        <Text variant="h2" className="como-trabajamos-titulo">{titulo}</Text>
         <Text variant="p" className="como-trabajamos-parrafo">{parrafo}</Text>
         <Text variant="p" className="como-trabajamos-intro">{introPasos}</Text>
         {/* Component="ol" hace que sea una lista numerada */}

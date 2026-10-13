@@ -1,6 +1,6 @@
 .beneficios { background: #16161a; padding: 4rem 3rem; }
 .beneficios-titulo { text-align: center; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; margin-bottom: 3rem; }
-.beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-left: 110px; margin-right: 110px; }
 
 .tarjeta {
   background: #202024;
@@ -14,7 +14,12 @@
   background: linear-gradient(to bottom, #2a1a3a, #1a0050);
   color: #fff;
 }
-.tarjeta-icono { width: 160px; height: 160px; object-fit: contain; }
+.tarjeta-icono {
+  width: 160px;
+  height: 160px;
+  padding: 20px;          /* Al achicar el numero de pixeles se agrandara el dibujo, al agrandarlo se achicara*/
+  object-fit: contain;
+}
 .tarjeta-titulo { font-weight: 600; margin: 1rem 0 0.5rem; }
 
 @media (max-width: 992px) {

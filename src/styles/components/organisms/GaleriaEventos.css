@@ -3,10 +3,18 @@
   padding: 2rem 3rem 4rem;
 }
 
+.galeria-eventos-titulo {
+  text-align: center;
+  margin-bottom: 55px;
+  color: #fff;
+}
+
 .galeria-eventos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  margin-left: 110px; 
+  margin-right: 110px;
 }
 
 .evento-tarjeta {
