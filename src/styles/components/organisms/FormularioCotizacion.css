@@ -1,0 +1,76 @@
+.seccion-cotizacion {
+  background: #16161a;
+  padding: 3rem 3rem 5rem;
+}
+
+/* En la maqueta era max-width: 500px para que se vea angosto y limpio */
+.cotizacion-contenido {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cotizacion-titulo {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.cotizacion-subtitulo {
+  text-align: center;
+  color: #9a9aa6;
+  margin-bottom: 2rem;
+}
+
+.cotizacion-form {
+  background: #202024;
+  border-radius: 24px;
+  padding: 2rem;
+  color: #c9c9d1;
+}
+
+.campo-formulario {
+  margin-bottom: 1.25rem;
+}
+
+.cotizacion-form label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.cotizacion-form .form-control {
+  background: #16161a;
+  border-color: #3a3a42;
+  color: #fff;
+}
+
+.cotizacion-form .form-control::placeholder {
+  color: #7d7d89;
+}
+
+.cotizacion-form .form-control:focus {
+  border-color: #c9a6ff;
+  box-shadow: 0 0 0 0.25rem rgba(201, 166, 255, 0.25);
+}
+
+/* Mismo boton que "Comprar ticket" de la galeria de eventos */
+.cotizacion-form .cotizacion-boton {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #300020;
+  --bs-btn-border-color: #300020;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5c003d;
+  --bs-btn-hover-border-color: #5c003d;
+  --bs-btn-active-bg: #5c003d;
+  --bs-btn-active-border-color: #5c003d;
+  border-radius: 20px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 576px) {
+  .seccion-cotizacion { padding: 2rem 1.5rem 4rem; }
+  .cotizacion-form { padding: 1.5rem; }
+}

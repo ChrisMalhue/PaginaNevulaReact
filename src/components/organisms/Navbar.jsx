@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import '../../styles/components/organisms/Navbarstyle.css';
 import Image from '../atoms/Image';
@@ -19,8 +18,8 @@ function NavBar() {
             <Nav.Link href="/#elegirnos">Por que elegirnos</Nav.Link>
             <Nav.Link href="/eventos#trabajamos">Como trabajamos</Nav.Link>
             <Nav.Link href="/eventos#fotos">Galeria de eventos</Nav.Link>
-            <Nav.Link href="/">FAQ</Nav.Link>
-            <Nav.Link href="/">Cotizacion</Nav.Link>
+            <Nav.Link href="/faqcotiza#faq">FAQ</Nav.Link>
+            <Nav.Link href="/faqcotiza#cotizacion">Cotizacion</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/">Iniciar sesion</Nav.Link>
