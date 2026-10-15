@@ -10,16 +10,26 @@
   text-align: center;
   transition: background 0.3s ease, color 0.3s ease;
 }
+
 .tarjeta:hover {
   background: linear-gradient(to bottom, #2a1a3a, #1a0050);
   color: #fff;
+  transform: scale(1.05);
+  transition: 0.7s;
 }
+
+.tarjeta:hover .tarjeta-icono{
+  color: #B5249A;
+  transition: 0.7s;
+}
+
 .tarjeta-icono {
   width: 160px;
   height: 160px;
   padding: 20px;          /* Al achicar el numero de pixeles se agrandara el dibujo, al agrandarlo se achicara*/
   object-fit: contain;
 }
+
 .tarjeta-titulo { font-weight: 600; margin: 1rem 0 0.5rem; }
 
 @media (max-width: 992px) {

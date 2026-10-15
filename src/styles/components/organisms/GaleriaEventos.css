@@ -35,6 +35,8 @@
 .evento-tarjeta:hover {
   background: linear-gradient(to bottom, #2a1a3a, #1a0050);
   color: #fff;
+  transform: scale(1.03);
+  transition: 0.7s;
 }
 
 /* Los afiches son verticales (4:5), asi todos quedan del mismo tamaño */
