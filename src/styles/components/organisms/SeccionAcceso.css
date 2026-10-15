@@ -1,0 +1,47 @@
+.seccion-acceso {
+  background: #16161a;
+  padding: 3rem 3rem 5rem;
+  min-height: 70vh;
+}
+
+.acceso-contenido {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.acceso-titulo {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* Pestañas tipo "pill", dos botones del mismo ancho */
+.acceso-tabs {
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 0;
+}
+
+.acceso-tabs .nav-link {
+  background: #202024;
+  color: #9a9aa6;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 0.7rem 1.2rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.acceso-tabs .nav-link:hover {
+  background: #5c003d;
+  color: #fff;
+}
+
+.acceso-tabs .nav-link.active {
+  background: #300020;
+  color: #fff;
+}
+
+@media (max-width: 576px) {
+  .seccion-acceso { padding: 2rem 1.5rem 4rem; }
+}

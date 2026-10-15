@@ -1,9 +1,15 @@
+import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { FaCircleUser } from 'react-icons/fa6';
 import '../../styles/components/organisms/Navbarstyle.css';
 import Image from '../atoms/Image';
 import logo from '../../assets/images/logo.webp';
+import { estaLogueado, cerrarSesion } from '../../logic/sesion';
 
 function NavBar() {
+  // Los links son href normales (recargan la página), así que se lee en cada carga
+  const logueado = estaLogueado();
+
   return (
     <Navbar className="custom-navbar" variant="dark" expand="lg">
       <Container fluid>                              {/* Esto hace que use todo el ancho de la pantalla */}
@@ -22,7 +28,13 @@ function NavBar() {
             <Nav.Link href="/faqcotiza#cotizacion">Cotizacion</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/">Iniciar sesion</Nav.Link>
+            {logueado ? (
+              <Nav.Link href="/" onClick={cerrarSesion}>Cerrar sesion</Nav.Link>
+            ) : (
+              <Nav.Link href="/login" aria-label="Iniciar sesión o registrarse" title="Iniciar sesión o registrarse">
+                <FaCircleUser size={30} />
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

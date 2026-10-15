@@ -1,0 +1,24 @@
+/* Mismo margen lateral que la grilla de la galería para que queden alineadas */
+.mis-recordatorios {
+  margin: 4rem 110px 0;
+  padding-top: 3rem;
+  border-top: 1px solid #3a3a42;
+}
+
+/* La grilla ya trae su margen; aquí lo anulamos para no duplicarlo */
+.mis-recordatorios .galeria-eventos-grid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mis-recordatorios-titulo {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.mis-recordatorios-vacio {
+  text-align: center;
+  color: #9a9aa6;
+  margin: 0;
+}

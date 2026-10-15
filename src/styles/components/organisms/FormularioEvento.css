@@ -1,0 +1,86 @@
+.seccion-evento-form {
+  background: #16161a;
+  padding: 0 3rem 5rem;
+}
+
+.evento-form-contenido {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.evento-form-titulo {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.formulario-evento {
+  background: #202024;
+  border-radius: 24px;
+  padding: 2rem;
+  color: #c9c9d1;
+}
+
+/* Grilla simétrica de 2 columnas; la imagen ocupa todo el ancho */
+.evento-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.5rem;
+}
+
+.evento-form-ancho {
+  grid-column: 1 / -1;
+}
+
+.formulario-evento label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.formulario-evento .form-control,
+.formulario-evento .form-select {
+  background-color: #16161a;
+  border-color: #3a3a42;
+  color: #fff;
+}
+
+.formulario-evento .form-control::placeholder {
+  color: #7d7d89;
+}
+
+.formulario-evento .form-control:disabled {
+  background-color: #16161a;
+  opacity: 0.45;
+}
+
+.formulario-evento .form-control:focus,
+.formulario-evento .form-select:focus {
+  border-color: #c9a6ff;
+  box-shadow: 0 0 0 0.25rem rgba(201, 166, 255, 0.25);
+}
+
+.formulario-evento .evento-form-boton {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #300020;
+  --bs-btn-border-color: #300020;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #5c003d;
+  --bs-btn-hover-border-color: #5c003d;
+  --bs-btn-active-bg: #5c003d;
+  --bs-btn-active-border-color: #5c003d;
+  border-radius: 20px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .evento-form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  .seccion-evento-form { padding: 0 1.5rem 4rem; }
+  .formulario-evento { padding: 1.5rem; }
+}
