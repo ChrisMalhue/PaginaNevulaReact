@@ -2,8 +2,8 @@ import React from 'react';
 import { Caluga } from '../atoms/Caluga';
 import Image from '../atoms/Image';
 import Button from '../atoms/Button';
+import { FaBell, FaRegBell } from 'react-icons/fa6';
 import { Texts } from './Texts';
-import { BotonRecordatorio } from './BotonRecordatorio';
 import { esProximo, formatearFecha } from '../../logic/fechasEventos';
 
 export function TarjetaEvento({
@@ -21,6 +21,7 @@ export function TarjetaEvento({
   const mostrarBoton = estado === 'Programado' && link;
   // La campanita solo aparece en eventos que aún no suceden
   const mostrarCampana = onToggleRecordatorio && esProximo({ estado, fecha });
+  const textoCampana = recordatorioActivo ? 'Quitar recordatorio' : 'Recordarme este evento';
 
   const datos = [
     { text: `Local: ${local}`, variant: 'p', className: 'evento-dato' },
@@ -36,7 +37,16 @@ export function TarjetaEvento({
   return (
     <Caluga className="evento-tarjeta">
       {mostrarCampana && (
-        <BotonRecordatorio activo={recordatorioActivo} onClick={() => onToggleRecordatorio(id)} />
+        <Button
+          type="button"
+          className={`evento-recordatorio${recordatorioActivo ? ' activo' : ''}`}
+          onClick={() => onToggleRecordatorio(id)}
+          aria-pressed={recordatorioActivo}
+          aria-label={textoCampana}
+          title={textoCampana}
+        >
+          {recordatorioActivo ? <FaBell /> : <FaRegBell />}
+        </Button>
       )}
       <Image src={imagen} alt={alt} className="evento-imagen" />
       <Texts items={datos} />

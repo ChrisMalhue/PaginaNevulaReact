@@ -5,7 +5,6 @@ import Text from '../atoms/Text';
 import Link from '../atoms/Link';
 import { List } from '../atoms/List';
 import { ListItem } from '../atoms/ListItem';
-import { ListadoEnlaces } from '../molecules/Lists';
 import '../../styles/components/organisms/Footer.css';
 
 export function Footer({ logo, enlaces = [], contactos = [], redes = [] }) {
@@ -15,7 +14,13 @@ export function Footer({ logo, enlaces = [], contactos = [], redes = [] }) {
 
       <Caluga className="footer-help">
         <Text variant="h3" className="footer-title">¿Necesitas ayuda?</Text>
-        <ListadoEnlaces items={enlaces} className="footer-links" linkClassName="footer-link" />
+        <List className="footer-links">
+          {enlaces.map((item, index) => (
+            <ListItem key={index}>
+              <Link href={item.href} className="footer-link">{item.label}</Link>
+            </ListItem>
+          ))}
+        </List>
       </Caluga>
 
       <List className="footer-contact">

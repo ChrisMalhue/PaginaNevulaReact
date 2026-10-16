@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
 import { Caluga } from '../atoms/Caluga';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { CampoFormulario } from '../molecules/CampoFormulario';
-import { CampoSelect } from '../molecules/CampoSelect';
 import { estadosEvento } from '../../data/estadosEvento';
 import { valoresIniciales, validarEvento } from '../../logic/validarEvento';
 import { hoyISO } from '../../logic/fechasEventos';
@@ -59,8 +59,14 @@ export function FormularioEvento({ onAgregar }) {
           <Caluga className="evento-form-grid">
             <CampoFormulario id="evento-local" name="local" etiqueta="Local del evento" type="text"
               placeholder="Escribe aquí" value={valores.local} onChange={manejarCambio} error={errores.local} />
-            <CampoSelect id="evento-estado" name="estado" etiqueta="Estado" opciones={estadosEvento}
-              value={valores.estado} onChange={manejarCambio} />
+            <Form.Group className="mb-3" controlId="evento-estado">
+              <Form.Label>Estado</Form.Label>
+              <Form.Select name="estado" value={valores.estado} onChange={manejarCambio}>
+                {estadosEvento.map((estado) => (
+                  <option key={estado} value={estado}>{estado}</option>
+                ))}
+              </Form.Select>
+            </Form.Group>
             <CampoFormulario id="evento-fecha" name="fecha" etiqueta="Fecha del evento" type="date"
               min={hoyISO()} value={valores.fecha} onChange={manejarCambio} error={errores.fecha}
               disabled={!esProgramado} />
