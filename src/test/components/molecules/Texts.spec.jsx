@@ -1,4 +1,3 @@
-// src/test/components/molecules/Texts.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { Texts } from '../../../components/molecules/Texts';
 

@@ -1,4 +1,3 @@
-// src/test/components/organisms/Footer.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { Footer } from '../../../components/organisms/Footer';
 

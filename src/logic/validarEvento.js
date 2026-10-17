@@ -6,9 +6,31 @@ export const valoresIniciales = {
   fecha: '',
   imagen: '',
   link: '',
+  horaInicio: '',
+  horaTermino: '',
+  genero: '',
+  lineup: '',
 };
 
 const esUrl = (texto) => /^https?:\/\/\S+$/i.test(texto.trim());
+const esHora = (texto) => /^([01]\d|2[0-3]):[0-5]\d$/.test(texto);
+
+const MAX_ARTISTAS = 30;
+const MAX_GENERO = 50;
+
+// De "DJ Uno, DJ Dos" o un nombre por línea a ['DJ Uno', 'DJ Dos'] (sin vacíos ni repetidos)
+export function parsearLineup(texto = '') {
+  const vistos = new Set();
+  return texto
+    .split(/[\n,]+/)
+    .map((nombre) => nombre.trim())
+    .filter((nombre) => {
+      const clave = nombre.toLowerCase();
+      if (!nombre || vistos.has(clave)) return false;
+      vistos.add(clave);
+      return true;
+    });
+}
 
 export function validarEvento(valores) {
   const errores = {};
@@ -45,6 +67,31 @@ export function validarEvento(valores) {
     } else if (!esUrl(valores.link)) {
       errores.link = 'Pega un link válido que empiece con http:// o https://';
     }
+  }
+
+  // Horario: opcional, pero si se llena uno hay que llenar el otro (el término puede ser
+  // después de medianoche, por eso no se compara con el inicio)
+  const horaInicio = valores.horaInicio.trim();
+  const horaTermino = valores.horaTermino.trim();
+  if (horaInicio && !esHora(horaInicio)) {
+    errores.horaInicio = 'Usa el formato HH:MM, ej: 22:00.';
+  } else if (!horaInicio && horaTermino) {
+    errores.horaInicio = 'Indica también la hora de inicio.';
+  }
+  if (horaTermino && !esHora(horaTermino)) {
+    errores.horaTermino = 'Usa el formato HH:MM, ej: 04:00.';
+  } else if (horaInicio && !horaTermino) {
+    errores.horaTermino = 'Indica también la hora de término.';
+  }
+
+  // Género: opcional, máximo 50 caracteres
+  if (valores.genero.trim().length > MAX_GENERO) {
+    errores.genero = `Máximo ${MAX_GENERO} caracteres.`;
+  }
+
+  // Line-up: opcional, máximo 30 artistas
+  if (parsearLineup(valores.lineup).length > MAX_ARTISTAS) {
+    errores.lineup = `Máximo ${MAX_ARTISTAS} artistas.`;
   }
 
   return errores;

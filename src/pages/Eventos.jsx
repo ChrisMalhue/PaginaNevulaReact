@@ -29,6 +29,10 @@ function Eventos() {
   // El evento nuevo queda primero, igual que en la maqueta
   const agregarEvento = (nuevo) => setListaEventos((prev) => [nuevo, ...prev]);
 
+  // Solo el admin puede borrar eventos (la tarjeta pide confirmación antes de llamar a esto)
+  const admin = esAdmin();
+  const eliminarEvento = (id) => setListaEventos((prev) => prev.filter((evento) => evento.id !== id));
+
   const alternarRecordatorio = (id) => {
     const nuevos = recordatorios.includes(id)
       ? recordatorios.filter((r) => r !== id)
@@ -75,6 +79,7 @@ function Eventos() {
               {...evento}
               recordatorioActivo={recordatorios.includes(evento.id)}
               onToggleRecordatorio={toggle}
+              onEliminar={admin ? eliminarEvento : undefined}
             />
           ))}
         </Caluga>
@@ -105,7 +110,7 @@ function Eventos() {
       </Caluga>
 
       {/* El formulario es solo para la cuenta admin */}
-      {esAdmin() && <FormularioEvento onAgregar={agregarEvento} />}
+      {admin && <FormularioEvento onAgregar={agregarEvento} />}
     </>
   );
 }

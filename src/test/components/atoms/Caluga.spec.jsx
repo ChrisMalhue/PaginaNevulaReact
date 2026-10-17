@@ -1,4 +1,3 @@
-// src/test/components/atoms/Caluga.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { Caluga } from '../../../components/atoms/Caluga';
 

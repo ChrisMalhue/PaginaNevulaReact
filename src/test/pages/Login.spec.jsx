@@ -1,4 +1,3 @@
-// src/test/pages/Login.spec.jsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import Login from '../../pages/Login';
 

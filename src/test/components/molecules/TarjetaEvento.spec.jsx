@@ -1,4 +1,3 @@
-// src/test/components/molecules/TarjetaEvento.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { TarjetaEvento } from '../../../components/molecules/TarjetaEvento';
 

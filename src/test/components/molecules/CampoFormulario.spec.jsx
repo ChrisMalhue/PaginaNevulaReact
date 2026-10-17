@@ -1,4 +1,3 @@
-// src/test/components/molecules/CampoFormulario.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { CampoFormulario } from '../../../components/molecules/CampoFormulario';
 

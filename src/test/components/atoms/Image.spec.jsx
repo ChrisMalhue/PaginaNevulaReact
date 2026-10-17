@@ -1,4 +1,3 @@
-// src/test/components/atoms/Image.spec.jsx
 import { render, screen } from '@testing-library/react';
 import Image from '../../../components/atoms/Image';
 

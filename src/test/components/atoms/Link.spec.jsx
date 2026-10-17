@@ -1,4 +1,3 @@
-// src/test/components/atoms/Link.spec.jsx
 import { render, screen } from '@testing-library/react';
 import Link from '../../../components/atoms/Link';
 

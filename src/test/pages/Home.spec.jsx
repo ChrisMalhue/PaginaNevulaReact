@@ -1,4 +1,3 @@
-// src/test/pages/Home.spec.jsx
 import { render, screen } from '@testing-library/react';
 import Home from '../../pages/Home';
 import { beneficios } from '../../data/beneficios';

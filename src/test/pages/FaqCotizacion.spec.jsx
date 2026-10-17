@@ -1,4 +1,3 @@
-// src/test/pages/FaqCotizacion.spec.jsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import FaqCotizacion from '../../pages/FaqCotizacion';
 import { preguntasFrecuentes } from '../../data/faq';

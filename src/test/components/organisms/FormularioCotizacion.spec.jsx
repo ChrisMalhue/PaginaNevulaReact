@@ -1,4 +1,3 @@
-// src/test/components/organisms/FormularioCotizacion.spec.jsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FormularioCotizacion } from '../../../components/organisms/FormularioCotizacion';
 

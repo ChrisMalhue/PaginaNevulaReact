@@ -1,4 +1,3 @@
-// src/test/components/organisms/FormularioLogin.spec.jsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FormularioLogin } from '../../../components/organisms/FormularioLogin';
 

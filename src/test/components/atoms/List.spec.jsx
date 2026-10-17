@@ -1,4 +1,3 @@
-// src/test/components/atoms/List.spec.jsx
 import { render, screen } from '@testing-library/react';
 import { List } from '../../../components/atoms/List';
 

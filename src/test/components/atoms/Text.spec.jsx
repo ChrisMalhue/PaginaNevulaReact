@@ -1,4 +1,3 @@
-// src/test/components/atoms/Text.spec.jsx
 import { render, screen } from '@testing-library/react';
 import Text from '../../../components/atoms/Text';
 

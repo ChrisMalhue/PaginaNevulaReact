@@ -1,8 +1,8 @@
 // src/test/pages/Eventos.spec.jsx
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Eventos from '../../pages/Eventos';
-import { comoTrabajamos } from '../../data/comoTrabajamos';
 import { eventos } from '../../data/eventos';
+import { comoTrabajamos } from '../../data/comoTrabajamos';
 
 const iniciarSesion = (usuario) => {
   localStorage.setItem('logueado', 'true');
@@ -19,6 +19,7 @@ describe('Eventos (page)', () => {
     expect(screen.getAllByAltText(/^Evento \d$/).length).toBe(eventos.length);
     expect(screen.queryByText('Mis recordatorios')).toBeNull();
     expect(screen.queryByRole('heading', { name: 'Agregar evento' })).toBeNull();
+    expect(screen.queryByRole('button', { name: /Eliminar evento/ })).toBeNull();
   });
 
   it('con un usuario normal muestra "Mis recordatorios" pero no el formulario', () => {
@@ -27,12 +28,32 @@ describe('Eventos (page)', () => {
     expect(screen.getByText('Mis recordatorios')).toBeTruthy();
     expect(screen.getByText(/Aún no tienes recordatorios/)).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'Agregar evento' })).toBeNull();
+    expect(screen.queryByRole('button', { name: /Eliminar evento/ })).toBeNull();
   });
 
-  it('con la cuenta admin muestra además el formulario para agregar eventos', () => {
+  it('con la cuenta admin puede eliminar un evento y agregar uno nuevo con line-up que aparece con "Ver detalles"', () => {
     iniciarSesion('admin');
     render(<Eventos />);
     expect(screen.getByRole('heading', { name: 'Agregar evento' })).toBeTruthy();
     expect(screen.getByText(comoTrabajamos.titulo)).toBeTruthy();
+
+    // Eliminar: con confirmación, la tarjeta desaparece de la galería
+    spyOn(window, 'confirm').and.returnValue(true);
+    expect(screen.getByText('Local: Casa FECH')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Eliminar evento Casa FECH' }));
+    expect(screen.queryByText('Local: Casa FECH')).toBeNull();
+    expect(screen.getAllByAltText(/^Evento \d$/).length).toBe(eventos.length - 1);
+
+    // Agregar: el evento nuevo aparece con su botón "Ver detalles"
+    const botonesAntes = screen.getAllByRole('button', { name: 'Ver detalles' }).length;
+    const escribir = (etiqueta, valor) =>
+      fireEvent.change(screen.getByLabelText(etiqueta), { target: { value: valor } });
+    escribir('Estado', 'Finalizado');
+    escribir('Local del evento', 'Club Nuevo');
+    escribir('Imagen del evento', 'https://imagenes.test/nuevo.jpg');
+    escribir('Line-up', 'DJ Uno, DJ Dos');
+    fireEvent.submit(screen.getByRole('button', { name: 'Agregar evento' }).closest('form'));
+    expect(screen.getByText('Local: Club Nuevo')).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: 'Ver detalles' }).length).toBe(botonesAntes + 1);
   });
 });

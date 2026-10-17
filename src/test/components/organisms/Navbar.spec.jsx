@@ -1,4 +1,3 @@
-// src/test/components/organisms/Navbar.spec.jsx
 import { render, screen } from '@testing-library/react';
 import NavBar from '../../../components/organisms/Navbar';
 
