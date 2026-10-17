@@ -22,3 +22,11 @@
   color: #9a9aa6;
   margin: 0;
 }
+
+/* Pantallas medianas y chicas: sin el margen fijo de escritorio, el padding de la sección basta */
+@media (max-width: 992px) {
+  .mis-recordatorios {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

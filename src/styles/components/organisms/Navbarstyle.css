@@ -35,3 +35,22 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* Menú colapsado (hamburguesa): todo lo que está bajo el breakpoint "lg" de Bootstrap */
+@media (max-width: 991.98px) {
+  /* Menos padding lateral para que el botón quepa en la misma fila que el logo */
+  .custom-navbar { padding: 0 1rem; }
+
+  .custom-navbar .navbar-collapse { padding-bottom: 1rem; }
+
+  /* En vertical el gap de 2rem sobraba: se reemplaza por padding en cada link */
+  .custom-navbar .nav-links { gap: 0; }
+  .custom-navbar .nav-link { padding: 0.6rem 0; }
+
+  /* Separa "Cerrar sesión" / icono de login del resto de los links */
+  .custom-navbar .navbar-collapse > .nav:last-child {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}

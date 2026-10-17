@@ -32,7 +32,9 @@ export function parsearLineup(texto = '') {
     });
 }
 
-export function validarEvento(valores) {
+// imagenOriginal: al editar, los eventos del proyecto tienen una imagen interna (no un link http),
+// así que si no se cambió no se le exige ser un link
+export function validarEvento(valores, { imagenOriginal } = {}) {
   const errores = {};
   const esProgramado = valores.estado === 'Programado';
 
@@ -43,10 +45,10 @@ export function validarEvento(valores) {
     errores.local = 'El local debe tener al menos 3 caracteres.';
   }
 
-  // Imagen: obligatoria y debe ser un link http(s)
+  // Imagen: obligatoria y debe ser un link http(s) (salvo que sea la imagen original sin cambios)
   if (!valores.imagen.trim()) {
     errores.imagen = 'El link de la imagen es obligatorio.';
-  } else if (!esUrl(valores.imagen)) {
+  } else if (valores.imagen.trim() !== imagenOriginal && !esUrl(valores.imagen)) {
     errores.imagen = 'Pega un link válido que empiece con http:// o https://';
   }
 

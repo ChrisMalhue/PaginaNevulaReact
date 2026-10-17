@@ -9,8 +9,26 @@ import { valoresIniciales, validarEvento, parsearLineup } from '../../logic/vali
 import { hoyISO } from '../../logic/fechasEventos';
 import '../../styles/components/organisms/FormularioEvento.css';
 
-export function FormularioEvento({ onAgregar }) {
-  const [valores, setValores] = useState(valoresIniciales);
+// Pasa un evento guardado a los valores de texto que usa el formulario
+const valoresDesdeEvento = (evento) => ({
+  local: evento.local,
+  estado: evento.estado,
+  fecha: evento.fecha || '',
+  imagen: evento.imagen,
+  link: evento.link || '',
+  horaInicio: evento.horaInicio || '',
+  horaTermino: evento.horaTermino || '',
+  genero: evento.genero || '',
+  lineup: (evento.lineup || []).join('\n'),
+});
+
+// Sirve para agregar (onAgregar) y para editar (eventoEditando + onGuardar + onCancelar).
+// Al cambiar de evento a editar, el padre cambia la key del formulario y se reinicia solo.
+export function FormularioEvento({ onAgregar, eventoEditando, onGuardar, onCancelar }) {
+  const editando = Boolean(eventoEditando);
+  const [valores, setValores] = useState(() =>
+    editando ? valoresDesdeEvento(eventoEditando) : valoresIniciales
+  );
   const [errores, setErrores] = useState({});
 
   const esProgramado = valores.estado === 'Programado';
@@ -18,7 +36,7 @@ export function FormularioEvento({ onAgregar }) {
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setValores((prev) => ({ ...prev, [name]: value }));
-    // Al cambiar el estado, fecha y link cambian de reglas: limpiamos errores
+    // Al cambiar el estado, la fecha y el link cambian de reglas: limpiamos errores
     if (name === 'estado') {
       setErrores({});
     } else if (errores[name]) {
@@ -29,7 +47,7 @@ export function FormularioEvento({ onAgregar }) {
   const agregarEvento = (e) => {
     e.preventDefault();
 
-    const nuevosErrores = validarEvento(valores);
+    const nuevosErrores = validarEvento(valores, { imagenOriginal: eventoEditando?.imagen });
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
       return;
@@ -38,20 +56,28 @@ export function FormularioEvento({ onAgregar }) {
     const local = valores.local.trim();
     const lineup = parsearLineup(valores.lineup);
     const genero = valores.genero.trim();
-    onAgregar({
-      id: Date.now(),
+    const evento = {
+      id: editando ? eventoEditando.id : Date.now(),
       imagen: valores.imagen.trim(),
       alt: `Evento en ${local}`,
       local,
       estado: valores.estado,
-      // Fecha y link solo existen en eventos Programados
-      ...(esProgramado && { fecha: valores.fecha, link: valores.link.trim() }),
+      // La fecha se guarda en cualquier evento (en los Programados es obligatoria);
+      // el link de entradas solo existe en los Programados
+      ...(valores.fecha && { fecha: valores.fecha }),
+      ...(esProgramado && { link: valores.link.trim() }),
       // Horario, género y line-up son opcionales: solo se guardan si se llenaron
       ...(valores.horaInicio && { horaInicio: valores.horaInicio, horaTermino: valores.horaTermino }),
       ...(genero && { genero }),
       ...(lineup.length > 0 && { lineup }),
-    });
+    };
 
+    if (editando) {
+      onGuardar(evento);
+      return;
+    }
+
+    onAgregar(evento);
     setValores(valoresIniciales);
     setErrores({});
   };
@@ -59,7 +85,7 @@ export function FormularioEvento({ onAgregar }) {
   return (
     <Caluga Component="section" id="agregar-evento" className="seccion-evento-form" data-bs-theme="dark">
       <Caluga className="evento-form-contenido">
-        <Text variant="h2" className="evento-form-titulo">Agregar evento</Text>
+        <Text variant="h2" className="evento-form-titulo">{editando ? 'Editar evento' : 'Agregar evento'}</Text>
 
         <Caluga Component="form" className="formulario-evento" onSubmit={agregarEvento} noValidate>
           <Caluga className="evento-form-grid">
@@ -74,8 +100,8 @@ export function FormularioEvento({ onAgregar }) {
               </Form.Select>
             </Form.Group>
             <CampoFormulario id="evento-fecha" name="fecha" etiqueta="Fecha del evento" type="date"
-              min={hoyISO()} value={valores.fecha} onChange={manejarCambio} error={errores.fecha}
-              disabled={!esProgramado} />
+              min={esProgramado ? hoyISO() : undefined} value={valores.fecha} onChange={manejarCambio}
+              error={errores.fecha} />
             <CampoFormulario id="evento-link" name="link" etiqueta="Link para comprar entradas" type="text"
               placeholder="Solo si está Programado" value={valores.link} onChange={manejarCambio}
               error={errores.link} disabled={!esProgramado} />
@@ -99,7 +125,16 @@ export function FormularioEvento({ onAgregar }) {
                 error={errores.imagen} />
             </Caluga>
           </Caluga>
-          <Button type="submit" className="evento-form-boton w-100">Agregar evento</Button>
+          <Caluga className="evento-form-acciones">
+            <Button type="submit" className="evento-form-boton">
+              {editando ? 'Guardar cambios' : 'Agregar evento'}
+            </Button>
+            {editando && (
+              <Button type="button" className="evento-form-cancelar" onClick={onCancelar}>
+                Cancelar
+              </Button>
+            )}
+          </Caluga>
         </Caluga>
       </Caluga>
     </Caluga>

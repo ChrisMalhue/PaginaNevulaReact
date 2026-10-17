@@ -50,3 +50,14 @@
   .como-trabajamos { padding: 3rem 1.5rem 1rem; }
   .como-trabajamos-caja { padding: 1.5rem; font-size: 1.05rem; }
 }
+
+/* Móvil: letra más chica, interlineado más compacto y texto alineado a la izquierda
+   (el justificado en columnas angostas deja huecos enormes entre palabras) */
+@media (max-width: 576px) {
+  .como-trabajamos { padding: 2rem 1rem 0.5rem; }
+  .como-trabajamos-caja { padding: 1.25rem 1rem; font-size: 0.95rem; line-height: 1.55; }
+  .como-trabajamos-titulo { font-size: 1.4rem; margin-bottom: 1rem; }
+  .como-trabajamos-parrafo { text-align: left; }
+  .como-trabajamos-intro { margin-top: 1.25rem; }
+  .como-trabajamos-paso { margin-bottom: 0.6rem; }
+}

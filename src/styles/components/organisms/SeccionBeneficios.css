@@ -1,6 +1,6 @@
 .beneficios { background: #16161a; padding: 4rem 3rem; }
 .beneficios-titulo { text-align: center; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; margin-bottom: 3rem; }
-.beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-left: 110px; margin-right: 110px; }
+.beneficios-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-left: 110px; margin-right: 110px; }
 
 .tarjeta {
   background: #202024;
@@ -27,11 +27,39 @@
   width: 160px;
   height: 160px;
   padding: 20px;          /* Al achicar el numero de pixeles se agrandara el dibujo, al agrandarlo se achicara*/
+  max-width: 100%;
   object-fit: contain;
 }
 
 .tarjeta-titulo { font-weight: 600; margin: 1rem 0 0.5rem; }
 
 @media (max-width: 992px) {
-  .beneficios-grid { grid-template-columns: 1fr; }
+  /* Una columna centrada, sin los márgenes fijos de escritorio */
+  .beneficios-grid {
+    grid-template-columns: minmax(0, 480px);
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Móvil: tarjetas más compactas para no tener que scrollear tanto */
+@media (max-width: 576px) {
+  .beneficios { padding: 2rem 1rem; }
+  .beneficios-titulo { font-size: 1.4rem; margin-bottom: 1.5rem; }
+  .beneficios-grid { gap: 1rem; }
+
+  .tarjeta { padding: 1rem; border-radius: 20px; }
+
+  /* Icono más chico; display:block quita el hueco extra que deja un svg en línea */
+  .tarjeta-icono {
+    display: block;
+    width: 80px;
+    height: 80px;
+    padding: 8px;
+    margin: 0 auto;
+  }
+
+  .tarjeta-titulo { font-size: 1rem; margin: 0.5rem 0 0.25rem; }
+  .tarjeta-texto { font-size: 0.9rem; line-height: 1.45; margin: 0; }
 }

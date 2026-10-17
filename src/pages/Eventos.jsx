@@ -21,6 +21,8 @@ function Eventos() {
   const usuario = obtenerUsuarioActivo();
 
   const [listaEventos, setListaEventos] = useState(eventos);
+  // Evento que el admin está editando en el formulario (null = el formulario agrega uno nuevo)
+  const [eventoEditando, setEventoEditando] = useState(null);
   // Los recordatorios son por usuario: solo se cargan los de quien tiene la sesión iniciada
   const [recordatorios, setRecordatorios] = useState(() =>
     logueado ? obtenerRecordatorios(usuario) : []
@@ -31,7 +33,21 @@ function Eventos() {
 
   // Solo el admin puede borrar eventos (la tarjeta pide confirmación antes de llamar a esto)
   const admin = esAdmin();
-  const eliminarEvento = (id) => setListaEventos((prev) => prev.filter((evento) => evento.id !== id));
+  const eliminarEvento = (id) => {
+    setListaEventos((prev) => prev.filter((evento) => evento.id !== id));
+    // Si justo se estaba editando el evento que se borró, se cierra la edición
+    if (eventoEditando?.id === id) setEventoEditando(null);
+  };
+
+  // Editar: el formulario de abajo se carga con el evento elegido (solo admin)
+  const iniciarEdicion = (id) => {
+    setEventoEditando(listaEventos.find((evento) => evento.id === id) || null);
+    document.getElementById('agregar-evento')?.scrollIntoView({ behavior: 'smooth' });
+  };
+  const guardarEdicion = (editado) => {
+    setListaEventos((prev) => prev.map((evento) => (evento.id === editado.id ? editado : evento)));
+    setEventoEditando(null);
+  };
 
   const alternarRecordatorio = (id) => {
     const nuevos = recordatorios.includes(id)
@@ -79,6 +95,7 @@ function Eventos() {
               {...evento}
               recordatorioActivo={recordatorios.includes(evento.id)}
               onToggleRecordatorio={toggle}
+              onEditar={admin ? iniciarEdicion : undefined}
               onEliminar={admin ? eliminarEvento : undefined}
             />
           ))}
@@ -110,7 +127,15 @@ function Eventos() {
       </Caluga>
 
       {/* El formulario es solo para la cuenta admin */}
-      {admin && <FormularioEvento onAgregar={agregarEvento} />}
+      {admin && (
+        <FormularioEvento
+          key={eventoEditando ? eventoEditando.id : 'nuevo'}
+          onAgregar={agregarEvento}
+          eventoEditando={eventoEditando}
+          onGuardar={guardarEdicion}
+          onCancelar={() => setEventoEditando(null)}
+        />
+      )}
     </>
   );
 }

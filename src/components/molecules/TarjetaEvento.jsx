@@ -24,6 +24,7 @@ export function TarjetaEvento({
   genero,
   recordatorioActivo = false,
   onToggleRecordatorio,
+  onEditar,
   onEliminar,
 }) {
   // Los detalles (horario, line-up y género) se despliegan dentro de la tarjeta
@@ -38,7 +39,7 @@ export function TarjetaEvento({
   const mostrarCampana = onToggleRecordatorio && esProximo({ estado, fecha });
   const textoCampana = recordatorioActivo ? 'Quitar recordatorio' : 'Recordarme este evento';
 
-  // Solo llega onEliminar cuando quien mira es admin; pedimos confirmación antes de borrar
+  // Solo llegan onEditar y onEliminar cuando quien mira es admin; pedimos confirmación antes de borrar
   const eliminar = () => {
     if (window.confirm(`¿Seguro que quieres eliminar el evento en ${local}?`)) {
       onEliminar(id);
@@ -116,17 +117,33 @@ export function TarjetaEvento({
           Comprar ticket
         </Button>
       )}
-      {onEliminar && (
-        <Button
-          type="button"
-          variant="outline-danger"
-          size="sm"
-          className="evento-eliminar-boton"
-          onClick={eliminar}
-          aria-label={`Eliminar evento ${local}`}
-        >
-          Eliminar evento
-        </Button>
+      {(onEditar || onEliminar) && (
+        <Caluga className="evento-acciones">
+          {onEditar && (
+            <Button
+              type="button"
+              variant="outline-light"
+              size="sm"
+              className="evento-editar-boton"
+              onClick={() => onEditar(id)}
+              aria-label={`Editar evento ${local}`}
+            >
+              Editar evento
+            </Button>
+          )}
+          {onEliminar && (
+            <Button
+              type="button"
+              variant="outline-danger"
+              size="sm"
+              className="evento-eliminar-boton"
+              onClick={eliminar}
+              aria-label={`Eliminar evento ${local}`}
+            >
+              Eliminar evento
+            </Button>
+          )}
+        </Caluga>
       )}
     </Caluga>
   );
