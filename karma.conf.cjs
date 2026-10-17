@@ -27,6 +27,7 @@ module.exports = function (config) {
               },
             },
           },
+          { test: /\.m?js$/, resolve: { fullySpecified: false } },
           { test: /\.css$/, use: ['style-loader', 'css-loader'] },
           // Imágenes y video que importan los componentes (.webp, .webm, etc.)
           { test: /\.(webp|webm|png|jpe?g|svg|gif)$/i, type: 'asset/resource' },
