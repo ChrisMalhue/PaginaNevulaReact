@@ -3,13 +3,12 @@ import Text from '../components/atoms/Text';
 import { Texts } from '../components/molecules/Texts';
 import { beneficios } from '../data/beneficios';
 import videoAniversario from '../assets/videos/video_aniversario.webm';
-import '../styles/components/organisms/Presentacion.css';
-import '../styles/components/organisms/SeccionBeneficios.css';
+import '../styles/pages/Home.css';
 
 function Home() {
   return (
     <>
-      {/* Presentación: video y texto de bienvenida */}
+      {/* video y texto de bienvenida */}
       <Caluga Component="section" id="quienes" className="presentacion">
         <Caluga className="presentacion-video-box">
           <video className="presentacion-video" autoPlay loop muted playsInline>
@@ -27,13 +26,12 @@ function Home() {
         </Caluga>
       </Caluga>
 
-      {/* Por qué elegirnos: una tarjeta por cada beneficio de data/beneficios.js */}
+      {/* Por qué elegirnos */}
       <Caluga Component="section" id="elegirnos" className="beneficios">
         <Text variant="h2" className="beneficios-titulo">Por qué elegir a Nevula</Text>
         <Caluga className="beneficios-grid">
           {beneficios.map(({ id, icono: Icono, titulo, descripcion }) => (
             <Caluga key={id} className="tarjeta">
-              {/* Icono es un componente de react-icons: toma su color del CSS (.tarjeta-icono) */}
               <Icono className="tarjeta-icono" aria-hidden="true" />
               <Texts
                 items={[

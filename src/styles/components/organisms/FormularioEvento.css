@@ -22,7 +22,6 @@
   color: #c9c9d1;
 }
 
-/* Grilla simétrica de 2 columnas; la imagen ocupa todo el ancho */
 .evento-form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -61,7 +60,6 @@
   box-shadow: 0 0 0 0.25rem rgba(201, 166, 255, 0.25);
 }
 
-/* Botones de acción: centrados, con espacio entre ellos y sin ocupar todo el ancho */
 .evento-form-acciones {
   display: flex;
   justify-content: center;
@@ -89,7 +87,6 @@
   --bs-btn-active-border-color: #5c003d;
 }
 
-/* Cancelar: sin borde blanco, solo un fondo sutil que se aclara al pasar el mouse */
 .formulario-evento .evento-form-cancelar {
   --bs-btn-color: #fff;
   --bs-btn-bg: #2c2c33;
@@ -111,8 +108,6 @@
   .formulario-evento { padding: 1.5rem; }
 }
 
-/* Pantallas muy angostas: los botones dejan de tener ancho mínimo y se ajustan a su texto
-   (aplica a "Guardar cambios", "Cancelar" y "Agregar evento") */
 @media (max-width: 300px) {
   .formulario-evento .evento-form-boton,
   .formulario-evento .evento-form-cancelar {

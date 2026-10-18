@@ -10,7 +10,7 @@ function obtenerRegistrados() {
   }
 }
 
-// Usuarios de prueba (data/usuarios.js) + los que se registraron desde la página
+// usuarios de prueba (data/usuarios.js) + los que se registraron desde la página
 export function obtenerUsuarios() {
   return [...usuarios, ...obtenerRegistrados()];
 }

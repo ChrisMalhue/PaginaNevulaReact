@@ -1,4 +1,3 @@
-import React from 'react';
 import { Caluga } from '../atoms/Caluga';
 import Button from '../atoms/Button';
 import { CampoFormulario } from '../molecules/CampoFormulario';
@@ -9,7 +8,7 @@ export function FormularioLogin() {
   const recibirDatosLogin = (e) => {
     e.preventDefault();
 
-    // Sin useState: leemos los valores directo del formulario
+    // leemos los valores del formulario
     const datos = new FormData(e.target);
     const usuario = datos.get('usuario').trim();
     const contrasena = datos.get('contrasena');

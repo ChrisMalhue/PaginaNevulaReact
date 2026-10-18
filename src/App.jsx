@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { FaHouse, FaPhone, FaEnvelope } from 'react-icons/fa6';
 import NavBar from './components/organisms/Navbar';

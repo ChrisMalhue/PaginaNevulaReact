@@ -2,8 +2,6 @@ export const valoresIniciales = { nombre: '', telefono: '', fecha: '', detalles:
 
 export function validarCotizacion(valores) {
   const errores = {};
-
-  // Nombre: obligatorio, mínimo 3 caracteres, solo letras
   if (!valores.nombre.trim()) {
     errores.nombre = 'El nombre es obligatorio.';
   } else if (valores.nombre.trim().length < 3) {
@@ -12,7 +10,6 @@ export function validarCotizacion(valores) {
     errores.nombre = 'El nombre solo puede tener letras.';
   }
 
-  // Teléfono chileno: 9XXXXXXXX, con o sin +56
   const tel = valores.telefono.replace(/[\s-]/g, '');
   if (!tel) {
     errores.telefono = 'El teléfono es obligatorio.';
@@ -20,7 +17,6 @@ export function validarCotizacion(valores) {
     errores.telefono = 'Ingresa un celular válido, ej: +56912345678.';
   }
 
-  // Fecha: obligatoria y no puede ser pasada
   if (!valores.fecha) {
     errores.fecha = 'La fecha del evento es obligatoria.';
   } else {
@@ -31,7 +27,6 @@ export function validarCotizacion(valores) {
     }
   }
 
-  // Detalles: opcional, máximo 500 caracteres
   if (valores.detalles.length > 500) {
     errores.detalles = 'Máximo 500 caracteres.';
   }

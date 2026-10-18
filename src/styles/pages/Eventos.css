@@ -1,0 +1,133 @@
+.como-trabajamos {
+  background: #16161a;
+  padding: 4rem 3rem 2rem;
+}
+
+.como-trabajamos-caja {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #202024;
+  border-radius: 24px;
+  padding: 2.5rem;
+  color: #c9c9d1;
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.como-trabajamos-titulo {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.como-trabajamos-parrafo {
+  text-align: justify;
+}
+
+.como-trabajamos-intro {
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+.como-trabajamos-pasos {
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.como-trabajamos-paso {
+  margin-bottom: 1rem;
+}
+
+.como-trabajamos-paso strong {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .como-trabajamos { padding: 3rem 1.5rem 1rem; }
+  .como-trabajamos-caja { padding: 1.5rem; font-size: 1.05rem; }
+}
+
+@media (max-width: 576px) {
+  .como-trabajamos { padding: 2rem 1rem 0.5rem; }
+  .como-trabajamos-caja { padding: 1.25rem 1rem; font-size: 0.95rem; line-height: 1.55; }
+  .como-trabajamos-titulo { font-size: 1.4rem; margin-bottom: 1rem; }
+  .como-trabajamos-parrafo { text-align: left; }
+  .como-trabajamos-intro { margin-top: 1.25rem; }
+  .como-trabajamos-paso { margin-bottom: 0.6rem; }
+}
+
+.galeria-eventos {
+  background: #16161a;
+  padding: 2rem 3rem 4rem;
+}
+
+.galeria-eventos-titulo {
+  text-align: center;
+  margin-bottom: 55px;
+  color: #fff;
+}
+
+.galeria-eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin-left: 110px;
+  margin-right: 110px;
+  justify-items: center;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .galeria-eventos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .galeria-eventos { padding: 1rem 1.5rem 3rem; }
+  .galeria-eventos-grid {
+    grid-template-columns: minmax(0, 400px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .galeria-eventos-grid { gap: 1rem; }
+  .galeria-eventos-titulo { margin-bottom: 1.5rem; }
+}
+
+.mis-recordatorios {
+  margin: 4rem 110px 0;
+  padding-top: 3rem;
+  border-top: 1px solid #3a3a42;
+}
+
+.mis-recordatorios .galeria-eventos-grid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mis-recordatorios-titulo {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.mis-recordatorios-vacio {
+  text-align: center;
+  color: #9a9aa6;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .mis-recordatorios {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

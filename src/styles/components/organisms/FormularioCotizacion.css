@@ -3,7 +3,6 @@
   padding: 3rem 3rem 5rem;
 }
 
-/* En la maqueta era max-width: 500px para que se vea angosto y limpio */
 .cotizacion-contenido {
   max-width: 500px;
   margin: 0 auto;
@@ -54,7 +53,6 @@
   box-shadow: 0 0 0 0.25rem rgba(201, 166, 255, 0.25);
 }
 
-/* Mismo boton que "Comprar ticket" de la galeria de eventos */
 .cotizacion-form .cotizacion-boton {
   --bs-btn-color: #fff;
   --bs-btn-bg: #300020;

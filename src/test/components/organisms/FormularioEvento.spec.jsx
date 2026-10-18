@@ -24,11 +24,9 @@ describe('FormularioEvento (organism)', () => {
 
     expect(screen.getByLabelText('Link para comprar entradas').disabled).toBeFalse();
     escribir('Estado', 'Finalizado');
-    // Un evento finalizado también puede tener fecha; el link de entradas no tiene sentido
     expect(screen.getByLabelText('Fecha del evento').disabled).toBeFalse();
     expect(screen.getByLabelText('Link para comprar entradas').disabled).toBeTrue();
 
-    // Solo una de las dos horas: error y no se agrega
     escribir('Local del evento', 'Club Test');
     escribir('Imagen del evento', 'https://imagenes.test/foto.jpg');
     escribir('Hora de inicio', '22:00');
@@ -41,11 +39,10 @@ describe('FormularioEvento (organism)', () => {
     const onAgregar = jasmine.createSpy('onAgregar');
     render(<FormularioEvento onAgregar={onAgregar} />);
 
-    // Evento completo: horario, género y line-up (sin vacíos ni repetidos)
     escribir('Estado', 'Finalizado');
     escribir('Local del evento', 'Club Test');
     escribir('Imagen del evento', 'https://imagenes.test/foto.jpg');
-    escribir('Fecha del evento', '2025-06-21'); // fecha pasada: válida en un evento Finalizado
+    escribir('Fecha del evento', '2025-06-21'); 
     escribir('Hora de inicio', '22:00');
     escribir('Hora de término', '04:00');
     escribir('Género de música', 'Techno');
@@ -63,7 +60,6 @@ describe('FormularioEvento (organism)', () => {
       lineup: ['DJ Uno', 'DJ Dos', 'DJ Tres'],
     }));
 
-    // Evento sin opcionales (el formulario se limpió tras el primer envío)
     escribir('Estado', 'Finalizado');
     escribir('Local del evento', 'Otro Club');
     escribir('Imagen del evento', 'https://imagenes.test/otra.jpg');
@@ -81,7 +77,7 @@ describe('FormularioEvento (organism)', () => {
     const onCancelar = jasmine.createSpy('onCancelar');
     const eventoEditando = {
       id: 5,
-      imagen: '/assets/imagen-interna.webp', // imagen del proyecto: no es un link http
+      imagen: '/assets/imagen-interna.webp', 
       alt: 'Evento 5',
       local: 'Club Viejo',
       estado: 'Finalizado',
@@ -93,28 +89,25 @@ describe('FormularioEvento (organism)', () => {
     };
     render(<FormularioEvento eventoEditando={eventoEditando} onGuardar={onGuardar} onCancelar={onCancelar} />);
 
-    // El formulario se carga con los datos del evento
     expect(screen.getByRole('heading', { name: 'Editar evento' })).toBeTruthy();
     expect(screen.getByLabelText('Local del evento').value).toBe('Club Viejo');
     expect(screen.getByLabelText('Fecha del evento').value).toBe('2025-06-21');
     expect(screen.getByLabelText('Género de música').value).toBe('House');
     expect(screen.getByLabelText('Line-up').value).toBe('DJ Uno\nDJ Dos');
 
-    // Guardar con la imagen sin cambios (no es link http) no da error y conserva el id
     escribir('Local del evento', 'Club Nuevo');
     fireEvent.submit(screen.getByRole('button', { name: 'Guardar cambios' }).closest('form'));
     expect(onGuardar).toHaveBeenCalledWith(jasmine.objectContaining({
       id: 5,
       local: 'Club Nuevo',
       imagen: '/assets/imagen-interna.webp',
-      fecha: '2025-06-21', // la fecha de un evento Finalizado no se pierde al editar
+      fecha: '2025-06-21', 
       horaInicio: '22:00',
       horaTermino: '03:00',
       genero: 'House',
       lineup: ['DJ Uno', 'DJ Dos'],
     }));
 
-    // Cancelar avisa al padre
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
     expect(onCancelar).toHaveBeenCalledTimes(1);
   });

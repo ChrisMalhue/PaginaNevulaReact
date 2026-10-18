@@ -9,6 +9,7 @@ import Button from '../atoms/Button';
 import { FaBell, FaRegBell } from 'react-icons/fa6';
 import { Texts } from './Texts';
 import { esProximo, formatearFecha } from '../../logic/fechasEventos';
+import '../../styles/components/molecules/TarjetaEvento.css';
 
 export function TarjetaEvento({
   id,
@@ -27,19 +28,17 @@ export function TarjetaEvento({
   onEditar,
   onEliminar,
 }) {
-  // Los detalles (horario, line-up y género) se despliegan dentro de la tarjeta
+  // los detalles de evento se despliegan dentro de la tarjeta
   const [detallesAbiertos, setDetallesAbiertos] = useState(false);
-  // Si el evento no tiene horario, line-up ni género (ej: los que agrega el admin), no hay botón
+  // si no hay detalle, no hay botón
   const tieneDetalles = Boolean(horaInicio || lineup.length > 0 || genero);
   const idDetalles = `evento-detalles-${id}`;
-
-  // El botón de compra solo aparece si el evento está Programado y tiene link
+  // el botón de compra solo aparece si el evento está programado y si tiene link
   const mostrarBoton = estado === 'Programado' && link;
-  // La campanita solo aparece en eventos que aún no suceden
+  // la campanita solo aparece en eventos que estén programados
   const mostrarCampana = onToggleRecordatorio && esProximo({ estado, fecha });
   const textoCampana = recordatorioActivo ? 'Quitar recordatorio' : 'Recordarme este evento';
-
-  // Solo llegan onEditar y onEliminar cuando quien mira es admin; pedimos confirmación antes de borrar
+  // eliminar y editar aparecen cuando quien mira es admin
   const eliminar = () => {
     if (window.confirm(`¿Seguro que quieres eliminar el evento en ${local}?`)) {
       onEliminar(id);

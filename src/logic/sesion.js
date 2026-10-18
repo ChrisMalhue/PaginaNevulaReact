@@ -12,7 +12,7 @@ export function estaLogueado() {
   }
 }
 
-// Nombre del usuario con la sesión iniciada (null si no hay sesión)
+// nombre del usuario con la sesión iniciada (null si no hay sesión)
 export function obtenerUsuarioActivo() {
   try {
     return localStorage.getItem(CLAVE_USUARIO);
@@ -21,14 +21,14 @@ export function obtenerUsuarioActivo() {
   }
 }
 
-// Solo la cuenta "admin" (de data/usuarios.js) puede agregar eventos
+// solo la cuenta "admin" puede agregar eventos
 export function esAdmin() {
   const usuario = obtenerUsuarioActivo();
   return estaLogueado() && !!usuario && usuario.toLowerCase() === USUARIO_ADMIN;
 }
 
 export function iniciarSesion(usuario, contrasena) {
-  // El usuario no distingue mayúsculas; la contraseña sí
+  // el usuario no distingue mayúsculas, la contraseña sí
   const encontrado = obtenerUsuarios().find(
     (u) => u.usuario.toLowerCase() === usuario.toLowerCase() && u.contrasena === contrasena
   );

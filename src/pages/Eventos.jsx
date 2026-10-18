@@ -10,9 +10,7 @@ import { eventos } from '../data/eventos';
 import { estaLogueado, obtenerUsuarioActivo, esAdmin } from '../logic/sesion';
 import { esProximo } from '../logic/fechasEventos';
 import { obtenerRecordatorios, guardarRecordatorios } from '../logic/recordatorios';
-import '../styles/components/organisms/SeccionComoTrabajamos.css';
-import '../styles/components/organisms/GaleriaEventos.css';
-import '../styles/components/organisms/MisRecordatorios.css';
+import '../styles/pages/Eventos.css';
 
 const { titulo, parrafo, introPasos, pasos } = comoTrabajamos;
 
@@ -21,17 +19,17 @@ function Eventos() {
   const usuario = obtenerUsuarioActivo();
 
   const [listaEventos, setListaEventos] = useState(eventos);
-  // Evento que el admin está editando en el formulario (null = el formulario agrega uno nuevo)
+  // evento que el admin está editando en el formulario (null = el formulario agrega uno nuevo)
   const [eventoEditando, setEventoEditando] = useState(null);
-  // Los recordatorios son por usuario: solo se cargan los de quien tiene la sesión iniciada
+  // los recordatorios son por usuario: solo se cargan los de quien tiene la sesión iniciada
   const [recordatorios, setRecordatorios] = useState(() =>
     logueado ? obtenerRecordatorios(usuario) : []
   );
 
-  // El evento nuevo queda primero, igual que en la maqueta
+  // el evento nuevo queda primero
   const agregarEvento = (nuevo) => setListaEventos((prev) => [nuevo, ...prev]);
 
-  // Solo el admin puede borrar eventos (la tarjeta pide confirmación antes de llamar a esto)
+  // solo el admin puede borrar eventos
   const admin = esAdmin();
   const eliminarEvento = (id) => {
     setListaEventos((prev) => prev.filter((evento) => evento.id !== id));
@@ -39,7 +37,7 @@ function Eventos() {
     if (eventoEditando?.id === id) setEventoEditando(null);
   };
 
-  // Editar: el formulario de abajo se carga con el evento elegido (solo admin)
+  // editar: el formulario de abajo se carga con el evento elegido (solo admin)
   const iniciarEdicion = (id) => {
     setEventoEditando(listaEventos.find((evento) => evento.id === id) || null);
     document.getElementById('agregar-evento')?.scrollIntoView({ behavior: 'smooth' });
@@ -57,11 +55,10 @@ function Eventos() {
     guardarRecordatorios(usuario, nuevos);
   };
 
-  // Sin sesión no se pasa el toggle: no hay campanita ni "Mis recordatorios"
+  // sin sesión no se pasa el toggle: no hay campanita ni "Mis recordatorios"
   const toggle = logueado ? alternarRecordatorio : undefined;
 
-  // Solo eventos con la campanita activa que aún no suceden; los más cercanos primero
-  // (los que no tienen fecha quedan al final)
+  // solo eventos con la campanita activa que aún no suceden; los más cercanos primero (los que no tienen fecha quedan al final)
   const proximos = listaEventos
     .filter((evento) => recordatorios.includes(evento.id) && esProximo(evento))
     .sort((a, b) => (a.fecha || '9999-12-31').localeCompare(b.fecha || '9999-12-31'));

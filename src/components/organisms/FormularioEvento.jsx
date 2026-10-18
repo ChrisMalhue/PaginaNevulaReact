@@ -9,7 +9,7 @@ import { valoresIniciales, validarEvento, parsearLineup } from '../../logic/vali
 import { hoyISO } from '../../logic/fechasEventos';
 import '../../styles/components/organisms/FormularioEvento.css';
 
-// Pasa un evento guardado a los valores de texto que usa el formulario
+// pasa un evento guardado a los valores de texto que usa el formulario
 const valoresDesdeEvento = (evento) => ({
   local: evento.local,
   estado: evento.estado,
@@ -22,8 +22,8 @@ const valoresDesdeEvento = (evento) => ({
   lineup: (evento.lineup || []).join('\n'),
 });
 
-// Sirve para agregar (onAgregar) y para editar (eventoEditando + onGuardar + onCancelar).
-// Al cambiar de evento a editar, el padre cambia la key del formulario y se reinicia solo.
+// sirve para agregar y para editar.
+// al cambiar de evento a editar, el padre cambia la key del formulario y se reinicia solo.
 export function FormularioEvento({ onAgregar, eventoEditando, onGuardar, onCancelar }) {
   const editando = Boolean(eventoEditando);
   const [valores, setValores] = useState(() =>
@@ -36,7 +36,7 @@ export function FormularioEvento({ onAgregar, eventoEditando, onGuardar, onCance
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setValores((prev) => ({ ...prev, [name]: value }));
-    // Al cambiar el estado, la fecha y el link cambian de reglas: limpiamos errores
+    // al cambiar el estado, la fecha y el link cambian de reglas y limpiamos errores
     if (name === 'estado') {
       setErrores({});
     } else if (errores[name]) {
@@ -62,11 +62,10 @@ export function FormularioEvento({ onAgregar, eventoEditando, onGuardar, onCance
       alt: `Evento en ${local}`,
       local,
       estado: valores.estado,
-      // La fecha se guarda en cualquier evento (en los Programados es obligatoria);
-      // el link de entradas solo existe en los Programados
+      // el link de entradas solo existe en los eventos programados
       ...(valores.fecha && { fecha: valores.fecha }),
       ...(esProgramado && { link: valores.link.trim() }),
-      // Horario, género y line-up son opcionales: solo se guardan si se llenaron
+      // horario, género y line-up son opcionales: solo se guardan si se llenaron
       ...(valores.horaInicio && { horaInicio: valores.horaInicio, horaTermino: valores.horaTermino }),
       ...(genero && { genero }),
       ...(lineup.length > 0 && { lineup }),

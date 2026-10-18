@@ -15,7 +15,6 @@
   margin-bottom: 3rem;
 }
 
-/* Colores del acordeon: Bootstrap los lee de estas variables */
 .seccion-faq .accordion {
   --bs-accordion-bg: #202024;
   --bs-accordion-color: #c9c9d1;
@@ -23,7 +22,7 @@
   --bs-accordion-btn-color: #fff;
   --bs-accordion-btn-bg: #202024;
   --bs-accordion-active-color: #fff;
-  --bs-accordion-active-bg: #202024;   /* igual que el fondo: sin barra de otro color */
+  --bs-accordion-active-bg: #202024; 
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(201, 166, 255, 0.35);
   display: flex;
   flex-direction: column;
@@ -41,7 +40,6 @@
   padding: 1.25rem 1.5rem;
 }
 
-/* El aro morado solo se ve al navegar con teclado (Tab), no al hacer clic */
 .seccion-faq .faq-item .accordion-button:focus {
   box-shadow: none;
 }

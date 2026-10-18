@@ -13,7 +13,7 @@ export function FormularioRegistro({ onRegistrado }) {
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setValores((prev) => ({ ...prev, [name]: value }));
-    // Al editar la contraseña también se limpia el error de "no coinciden"
+    // al editar la contraseña también se limpia el error de "no coinciden"
     setErrores((prev) => ({
       ...prev,
       [name]: undefined,

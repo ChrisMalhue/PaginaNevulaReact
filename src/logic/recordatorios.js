@@ -1,4 +1,3 @@
-// Un solo registro en localStorage: { "usuario": [idEvento, ...], ... }
 const CLAVE = 'recordatoriosPorUsuario';
 
 function leerTodo() {

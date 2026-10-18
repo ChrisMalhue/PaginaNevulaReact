@@ -1,4 +1,3 @@
-import React from 'react';
 import { Caluga } from '../atoms/Caluga';
 import Image from '../atoms/Image';
 import Text from '../atoms/Text';
